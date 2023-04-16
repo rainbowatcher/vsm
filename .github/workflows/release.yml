@@ -1,0 +1,61 @@
+name: Release CI
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - v**
+
+env:
+  CARGO_INCREMENTAL: 0
+  RUST_BACKTRACE: short
+
+jobs:
+  release:
+    strategy:
+      matrix:
+        os: [windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Rust
+        uses: actions-rs/toolchain@stable
+        with:
+          toolchain: stable
+          profile: minimal
+          override: true
+
+      - name: Rust Cache
+        uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: src-tauri
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: pnpm
+
+      - name: install rust dependencies (mac only)
+        if: matrix.platform == 'macos-latest'
+        run: |
+          rustup target add aarch64-apple-darwin
+
+      - name: Yarn install and check
+        run: |
+          pnpm install --frozen-lockfile
+
+      - name: Tauri build
+        uses: tauri-apps/tauri-action@v0
+        # enable cache even though failed
+        # continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tagName: v__VERSION__
+          releaseName: "VSM v__VERSION__"
+          releaseBody: "More new features are now supported."
+          releaseDraft: false
+          prerelease: false
