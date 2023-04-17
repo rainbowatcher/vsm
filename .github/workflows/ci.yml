@@ -12,6 +12,7 @@ on:
 env:
   CARGO_INCREMENTAL: 0
   RUST_BACKTRACE: short
+  NODE_OPTIONS: --max-old-space-size=1536
 
 jobs:
   rust:
@@ -102,7 +103,6 @@ jobs:
           version: 7
           run_install: true
 
-      - run: export NODE_OPTIONS=--max-old-space-size=1536
       - name: tauri build
         run: pnpm tauri build --debug --verbose
 
