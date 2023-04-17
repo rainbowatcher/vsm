@@ -12,8 +12,8 @@ env:
 
 jobs:
   release:
-    strategy:
     runs-on: ${{ matrix.os }}
+    strategy:
       fail-fast: false
       matrix:
         include:
