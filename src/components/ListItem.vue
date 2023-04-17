@@ -10,7 +10,7 @@ defineEmits<{
 </script>
 
 <template>
-  <div select-none px2 hover:bg="dark:neutral-800 neutral" rounded w-full flex="~ row" justify-between @click="$emit('select', index)">
+  <div hover:bg="dark:neutral-800 neutral" flex="~ row" w-full select-none justify-between rounded px2 @click="$emit('select', index)">
     <span>{{ label }}</span>
     <span truncate text="dark:coolGray " text-3>{{ prefix }}</span>
   </div>

@@ -14,14 +14,15 @@ jobs:
   release:
     strategy:
       matrix:
-        os: [windows-latest, macos-latest]
+        os: [windows-latest, macos-latest, ubuntu-latest]
     runs-on: ${{ matrix.os }}
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
       - name: Setup Rust
-        uses: actions-rs/toolchain@stable
+        uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
           profile: minimal
@@ -32,18 +33,23 @@ jobs:
         with:
           workspaces: src-tauri
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2.2.4
+        with:
+          version: 7.28.0
+
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: 16
           cache: pnpm
 
-      - name: install rust dependencies (mac only)
+      - name: Install rust dependencies (mac only)
         if: matrix.platform == 'macos-latest'
         run: |
           rustup target add aarch64-apple-darwin
 
-      - name: Yarn install and check
+      - name: Pnpm install and check
         run: |
           pnpm install --frozen-lockfile
 
