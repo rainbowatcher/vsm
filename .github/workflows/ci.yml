@@ -100,7 +100,7 @@ jobs:
           run_install: true
 
       - name: tauri build
-        run: pnpm tauri build --debug
+        run: pnpm tauri build
 
   typescript:
     runs-on: ubuntu-latest
