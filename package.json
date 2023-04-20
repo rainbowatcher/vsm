@@ -19,7 +19,8 @@
     "@vueuse/core": "^10.0.2",
     "monaco-editor": "^0.37.1",
     "split.js": "^1.6.5",
-    "vue": "^3.2.47"
+    "vue": "^3.2.47",
+    "vue-router": "^4.1.6"
   },
   "devDependencies": {
     "@iconify-json/carbon": "^1.1.16",
@@ -33,14 +34,18 @@
     "@vue/test-utils": "^2.3.2",
     "bumpp": "^9.1.0",
     "commitlint": "^17.6.1",
+    "element-plus": "^2.3.3",
     "eslint": "^8.38.0",
     "husky": "^8.0.3",
     "json5": "^2.2.3",
     "lint-staged": "^13.2.1",
+    "perfect-scrollbar": "^1.5.5",
     "tauri-plugin-sql-api": "github:tauri-apps/tauri-plugin-sql",
     "taze": "^0.9.1",
     "typescript": "^5.0.4",
     "unocss": "^0.51.4",
+    "unplugin-auto-import": "^0.15.3",
+    "unplugin-vue-components": "^0.24.1",
     "vite": "^4.2.1",
     "vitest": "^0.30.1",
     "vue-tsc": "^1.2.0"

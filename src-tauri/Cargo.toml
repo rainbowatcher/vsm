@@ -13,9 +13,18 @@ edition = "2021"
 tauri-build = { version = "1.2", features = [] }
 
 [dependencies]
-tauri = { version = "1.2", features = ["fs-read-dir", "fs-read-file", "fs-write-file", "path-all", "window-start-dragging"] }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
+
+[dependencies.tauri]
+version = "1.2"
+features = [
+  "fs-read-dir",
+  "fs-read-file",
+  "path-all",
+  "window-start-dragging",
+  "fs-write-file"
+]
 [dependencies.tauri-plugin-sql]
 git = "https://github.com/tauri-apps/plugins-workspace"
 branch = "dev"
