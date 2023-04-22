@@ -2,10 +2,10 @@
 name = "vsm"
 version = "0.0.1"
 description = "A Tauri App"
-authors = ["you"]
-license = ""
-repository = ""
+authors = ["rainbowatcher <rainbow-w@qq.com>"]
 edition = "2021"
+rust-version = "1.68"
+license = "MIT"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
@@ -26,8 +26,7 @@ features = [
   "fs-write-file"
 ]
 [dependencies.tauri-plugin-sql]
-git = "https://github.com/tauri-apps/plugins-workspace"
-branch = "dev"
+path = "../crates/tauri-plugin-sql"
 features = ["sqlite"]
 
 [features]

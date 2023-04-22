@@ -1,0 +1,13 @@
+[workspace]
+members = [
+  "src-tauri",
+  "crates/tauri-plugin-sql"
+]
+
+
+[workspace.dependencies]
+serde = "1.0"
+serde_json = "1.0"
+tauri = "1.2"
+log = "0.4"
+thiserror = "1.0"
