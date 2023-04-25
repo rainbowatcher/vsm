@@ -1,15 +1,18 @@
-<script>
+<script lang="ts" setup>
 
 </script>
 
 <template>
-  <div class="vsm-side-menu-wrapper" flex="~ col" fixed inset-0 h-screen w-16 justify-between bg-white dark:bg-neutral-700>
+  <div data-tauri-drag-region class="vsm-side-menu-wrapper" flex="~ col" fixed inset-0 h-screen w-16 justify-between bg-neutral2 dark:bg-neutral-600>
     <slot name="menu" />
   </div>
   <div>
-    <div class="vsm-header-wrapper" w="[calc(100vw-4rem)]" bg="dark:neutral-800 gray-50" fixed left-16 top-0 h-16 px2 py1>
+    <div data-tauri-drag-region class="vsm-header-wrapper" bg="dark:neutral7 neutral-50" top-0 h-8 px2 py1 pl-16>
       <slot name="header" />
     </div>
-    <slot name="content" />
+    <div class="vsm-content-wrapper" pl16 bg="dark:neutral-700 neutral-50">
+      <slot name="content" />
+    </div>
+    <!-- TODO: may add footer here -->
   </div>
 </template>

@@ -4,14 +4,49 @@
   line-height: 24px;
   font-weight: 400;
 
-  color: #0f0f0f;
-  background-color: #f6f6f6;
+  color: #262626;
+  background-color: #fefefe;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  /* colors */
+  --c-electric-primary-100:#FFD700;
+  --c-electric-primary-200:#ddb900;
+  --c-electric-primary-300:#917800;
+  --c-electric-accent-100:#00FFFF;
+  --c-electric-accent-200:#00999b;
+  --c-electric-text-100:#FFFFFF;
+  --c-electric-text-200:#e0e0e0;
+  --c-electric-bg-100:#1E1E1E;
+  --c-electric-bg-200:#2d2d2d;
+  --c-electric-bg-300:#454545;
+
+  --c-tiktok-dark-primary-100:#FF2D55;
+  --c-tiktok-dark-primary-200:#ff6b81;
+  --c-tiktok-dark-primary-300:#ffd8e2;
+  --c-tiktok-dark-accent-100:#8E8E93;
+  --c-tiktok-dark-accent-200:#37373b;
+  --c-tiktok-dark-text-100:#FFFFFF;
+  --c-tiktok-dark-text-200:#e0e0e0;
+  --c-tiktok-dark-bg-100:#1C1C1E;
+  --c-tiktok-dark-bg-200:#2b2b2d;
+  --c-tiktok-dark-bg-300:#434345;
+    
+  --c-tiktok-primary-100:#EE1D52;
+  --c-tiktok-primary-200:#ff607e;
+  --c-tiktok-primary-300:#ffcddf;
+  --c-tiktok-accent-100:#FFC107;
+  --c-tiktok-accent-200:#916400;
+  --c-tiktok-text-100:#333333;
+  --c-tiktok-text-200:#5c5c5c;
+  --c-tiktok-bg-100:#F7F7F7;
+  --c-tiktok-bg-200:#ededed;
+  --c-tiktok-bg-300:#c4c4c4;
+    
 }
 
 * {
@@ -32,23 +67,17 @@ li {
   list-style: none;
 }
 
-.dark {
+html.dark {
   color: #f6f6f6;
-  background-color: #2f2f2f;
+  background-color: #404040;
 }
 
-.cm-editor .cm-content {
-  font-family: "Fira Code", "Consolas", "Source Code Pro", monospace;
-  outline: none;
-  font-size: 14px;
-  font-weight: 400;
-  letter-spacing: normal;
-  line-height: 20px;
-}
-
-.cm-editor .cm-gutterElement {
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: normal;
-  line-height: 20px;
+/* element plus */
+.el-message {
+  --el-color-success: #10b981;
+  /* border */
+  /* --el-color-success-light-8: #bbf7d022; */
+  /* background */
+  --el-color-success-light-9: #404040;
+  transform: translateY(+50%) translateX(-50%);
 }

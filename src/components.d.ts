@@ -9,11 +9,28 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    DashBoard: typeof import('./components/views/DashBoard.vue')['default']
+    ElButton: typeof import('element-plus/es')['ElButton']
+    ElCollapse: typeof import('element-plus/es')['ElCollapse']
+    ElCollapseItem: typeof import('element-plus/es')['ElCollapseItem']
+    ElForm: typeof import('element-plus/es')['ElForm']
+    ElFormItem: typeof import('element-plus/es')['ElFormItem']
+    ElInput: typeof import('element-plus/es')['ElInput']
+    ElTabPane: typeof import('element-plus/es')['ElTabPane']
+    ElTabs: typeof import('element-plus/es')['ElTabs']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Test: typeof import('./components/views/Test.vue')['default']
+    VCard: typeof import('./components/VCard.vue')['default']
+    VDialog: typeof import('./components/VDialog.vue')['default']
+    VHeader: typeof import('./components/VHeader.vue')['default']
     VLayout: typeof import('./components/VLayout.vue')['default']
+    VList: typeof import('./components/VList.vue')['default']
     VListItem: typeof import('./components/VListItem.vue')['default']
-    VScrollbar: typeof import('./components/VScrollbar.vue')['default']
+    VMeta: typeof import('./components/VMeta.vue')['default']
+    VSearchbar: typeof import('./components/VSearchbar.vue')['default']
     VSideMenu: typeof import('./components/VSideMenu.vue')['default']
+    VSnippetList: typeof import('./components/VSnippetList.vue')['default']
+    VToolbar: typeof import('./components/VToolbar.vue')['default']
   }
 }

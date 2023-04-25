@@ -1,17 +1,24 @@
 <script setup lang="ts">
+import type { VsmSnippet } from "@composables/vscode"
+
 const props = defineProps<{
-  index: number
-  label: string
-  prefix: string
+  item: VsmSnippet
 }>()
-defineEmits<{
-  (e: "select", idx: number): void
-}>()
+
+// const tags = props.item.tags.split
 </script>
 
 <template>
-  <div hover:bg="dark:neutral-800 neutral" flex="~ row" w-full select-none justify-between rounded px2 @click="$emit('select', index)">
-    <span>{{ label }}</span>
-    <span truncate text="dark:coolGray " text-3>{{ prefix }}</span>
+  <div
+    bg="dark:#464648 neutral1" hover:bg="dark:#545458 #fcfcfc" active:hover:bg="dark:#404040 #fafafa"
+    grid="~ cols-2 auto-rows-min" w-full cursor-pointer
+    select-none px1 transition duration-200
+  >
+    <span text-4>{{ item.name }}</span>
+    <span mla self-center>{{ item.prefix }}</span>
+    <span text="dark:coolGray" truncate text-3>
+      {{ item.tags }}
+    </span>
+    <span text="dark:coolGray" mla self-center text-3>{{ item.createDate }}</span>
   </div>
 </template>

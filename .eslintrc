@@ -1,3 +1,4 @@
 {
-  "extends": ["@rainbowatcher", "@unocss"]
+  "extends": ["@rainbowatcher", "@unocss"],
+  "ignorePatterns": ["crates/tauri-plugin-sql"]
 }

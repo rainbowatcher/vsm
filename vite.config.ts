@@ -1,4 +1,5 @@
 /// <reference types="vitest" />
+import path from "node:path"
 import { defineConfig } from "vite"
 import vue from "@vitejs/plugin-vue"
 import unocss from "unocss/vite"
@@ -6,8 +7,16 @@ import AutoImport from "unplugin-auto-import/vite"
 import Components from "unplugin-vue-components/vite"
 import { ElementPlusResolver } from "unplugin-vue-components/resolvers"
 
+// const __dirname = encodeURI(import.meta.url)
+
 // https://vitejs.dev/config/
 export default defineConfig(async () => ({
+  resolve: {
+    alias: {
+      "@components/": `${path.resolve(__dirname, "src/components")}/`,
+      "@composables/": `${path.resolve(__dirname, "src/composables")}/`,
+    },
+  },
   plugins: [
     vue(),
     AutoImport({
@@ -17,7 +26,7 @@ export default defineConfig(async () => ({
         "vue-router",
       ],
       resolvers: [ElementPlusResolver()],
-      dirs: ["src/composables/**"],
+      dirs: ["src/composables/**", "src/store/**"],
       vueTemplate: true,
       dts: "src/auto-imports.d.ts",
     }),

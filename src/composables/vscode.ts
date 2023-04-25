@@ -1,21 +1,32 @@
 import { readDir, readTextFile } from "@tauri-apps/api/fs"
 import { configDir, resolve, sep } from "@tauri-apps/api/path"
 import json5 from "json5"
+import Database from "tauri-plugin-sql-api"
 import { deepCompare } from "./util"
 
 const EXCLUDE = [".DS_Store"]
 
 type Snippet = Record<string, SnippetItem>
 
-type SnippetItem = Omit<VSMSnippet, "name" | "lang">
+type SnippetItem = Omit<VscSnippet, "name" | "lang">
 
-export type VSMSnippet = {
+export type VscSnippet = {
   name:string
   lang: string
   prefix: string
   body: string[]
-  description: string
+  desc: string
   scope: string
+}
+
+export type VsmSnippet = {
+  name: string
+  lang: string
+  prefix?: string
+  body?: string
+  desc?: string
+  tags?: string
+  createDate?: string
 }
 
 export type Profile = {
@@ -23,6 +34,8 @@ export type Profile = {
   path: string
   snippetPath: string
 }
+
+export type GroupedSnippets = Record<string, VsmSnippet[]>
 
 export const getVSCConfigDir = async () => {
   const publicConfigDir = await configDir()
@@ -86,9 +99,9 @@ export const getSnippetItems = async () => {
 }
 
 
-export const findConflictingSnippets = (snippets: VSMSnippet[]) => {
+export const findConflictingSnippets = (snippets: VscSnippet[]) => {
   return snippets
-    .reduce<Record<string, {count: number; items: VSMSnippet[]}>>((acc, value) => {
+    .reduce<Record<string, {count: number; items: VscSnippet[]}>>((acc, value) => {
     if (acc[value.name]) {
       if (!deepCompare(acc[value.name].items[0], value)) {
         acc[value.name].count++
@@ -101,7 +114,7 @@ export const findConflictingSnippets = (snippets: VSMSnippet[]) => {
   }, {})
 }
 
-export const getUniqueSnippets = (snippets: VSMSnippet[]) => {
+export const getUniqueSnippets = (snippets: VscSnippet[]) => {
   return snippets.filter((obj, idx, self) => self.findIndex(o => deepCompare(o, obj)) === idx)
 }
 

@@ -44,6 +44,7 @@ export type EditorOptions = {
 export const useMonacoEditor = (useOptions: EditorOptions) => {
   const instance = shallowRef<monaco.editor.IStandaloneCodeEditor>()
   const [isLoading, toggleLoading] = useToggle(true)
+  const onValueChange = ref<(e: monaco.editor.IModelContentChangedEvent) => any>()
   const {
     data = "",
     lang = "handlebars",
@@ -51,22 +52,24 @@ export const useMonacoEditor = (useOptions: EditorOptions) => {
     minimap = false,
     readOnly = false,
   } = useOptions
-  // const options = { minimap: { enabled: false } }
 
-  nextTick(async () => {
+
+  watch(container, async () => {
     const _container = unref(container)
     if (!_container) return
     instance.value = monaco.editor.create(_container, { readOnly, minimap: { enabled: minimap }, scrollBeyondLastLine: false })
     toggleLoading(false)
 
+    // auto resize when window resized
     window.addEventListener("resize", resize)
     instance.value.onDidDispose(() => {
       window.removeEventListener("resize", resize)
     })
 
     // TODO: can do some prompts here
-    instance.value.onDidChangeModelContent(() => {
+    instance.value.onDidChangeModelContent((e) => {
       if (isRef(data)) data.value = instance.value?.getValue() || ""
+      onValueChange.value?.(e)
     })
   })
 
@@ -89,12 +92,64 @@ export const useMonacoEditor = (useOptions: EditorOptions) => {
     })
   }
 
+  // const useTheme = () => {
+  //   monaco.editor.defineTheme("vsm", {
+  //     base: "vs-dark",
+  //     inherit: true,
+  //     rules: [],
+  //     colors: {
+  //       "editor.background": "#404042",
+  //       "editor.lineHighlightBackground": "#00000014",
+  //     },
+  //   })
+  //   monaco.editor.setTheme("vsm")
+  // }
+
+  // watchOnce(instance, () => useTheme())
+
+  // /**
+  //  * This function should invoke after editor did mounted.
+  //  * @example
+  //  * ```js
+  //  * onMounted(() => {
+  //  *   setTimeout(() => {
+  //  *     onValueChange((e) => {
+  //  *       // do something here
+  //  *     })
+  //  *   })
+  //  * ```
+  //  * @param handler Event handler
+  //  */
+  // function onValueChange(handler: (e: monaco.editor.IModelContentChangedEvent) => any) {
+  //   if (!instance.value) {
+  //     console.warn("onValueChange must invoke after editor mounted. please place it to onMounted life cycle.")
+  //   } else {
+  //     instance.value?.onDidChangeModelContent(handler)
+  //   }
+  // }
+
+  function setLang(lang: string) {
+    if (instance.value) {
+      monaco.editor.setModelLanguage(instance.value.getModel()!, lang)
+    }
+  }
+
+  function setValue(value: string) { if (instance.value) instance.value.setValue(value) }
+  function getValue() { if (instance.value) return instance.value.getValue() }
+
+  function dispose() { if (instance.value) instance.value.dispose() }
+
   return {
     data,
     lang,
     instance,
     isLoading,
     resize,
-    dispose: instance.value?.dispose,
+    setLang,
+    setValue,
+    getValue,
+    dispose,
+    // event
+    onValueChange,
   }
 }

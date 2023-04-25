@@ -32,15 +32,15 @@ declare global {
   const eagerComputed: typeof import('@vueuse/core')['eagerComputed']
   const effectScope: typeof import('vue')['effectScope']
   const extendRef: typeof import('@vueuse/core')['extendRef']
-  const findConflictingSnippets: typeof import('./composables/useSnippets')['findConflictingSnippets']
-  const getAllProfiles: typeof import('./composables/useSnippets')['getAllProfiles']
-  const getAllSnippets: typeof import('./composables/useSnippets')['getAllSnippets']
+  const findConflictingSnippets: typeof import('./composables/vscode')['findConflictingSnippets']
+  const getAllProfiles: typeof import('./composables/vscode')['getAllProfiles']
+  const getAllSnippets: typeof import('./composables/vscode')['getAllSnippets']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
-  const getGlobalStorageConfig: typeof import('./composables/useSnippets')['getGlobalStorageConfig']
-  const getSnippetItems: typeof import('./composables/useSnippets')['getSnippetItems']
-  const getUniqueSnippets: typeof import('./composables/useSnippets')['getUniqueSnippets']
-  const getVSCConfigDir: typeof import('./composables/useSnippets')['getVSCConfigDir']
+  const getGlobalStorageConfig: typeof import('./composables/vscode')['getGlobalStorageConfig']
+  const getSnippetItems: typeof import('./composables/vscode')['getSnippetItems']
+  const getUniqueSnippets: typeof import('./composables/vscode')['getUniqueSnippets']
+  const getVSCConfigDir: typeof import('./composables/vscode')['getVSCConfigDir']
   const h: typeof import('vue')['h']
   const ignorableWatch: typeof import('@vueuse/core')['ignorableWatch']
   const inject: typeof import('vue')['inject']
@@ -79,7 +79,7 @@ declare global {
   const reactiveComputed: typeof import('@vueuse/core')['reactiveComputed']
   const reactiveOmit: typeof import('@vueuse/core')['reactiveOmit']
   const reactivePick: typeof import('@vueuse/core')['reactivePick']
-  const readFileToJson: typeof import('./composables/useSnippets')['readFileToJson']
+  const readFileToJson: typeof import('./composables/vscode')['readFileToJson']
   const readonly: typeof import('vue')['readonly']
   const ref: typeof import('vue')['ref']
   const refAutoReset: typeof import('@vueuse/core')['refAutoReset']
@@ -90,6 +90,7 @@ declare global {
   const resolveComponent: typeof import('vue')['resolveComponent']
   const resolveRef: typeof import('@vueuse/core')['resolveRef']
   const resolveUnref: typeof import('@vueuse/core')['resolveUnref']
+  const setupStore: typeof import('./store/index')['setupStore']
   const shallowReactive: typeof import('vue')['shallowReactive']
   const shallowReadonly: typeof import('vue')['shallowReadonly']
   const shallowRef: typeof import('vue')['shallowRef']
@@ -232,6 +233,7 @@ declare global {
   const useSessionStorage: typeof import('@vueuse/core')['useSessionStorage']
   const useShare: typeof import('@vueuse/core')['useShare']
   const useSlots: typeof import('vue')['useSlots']
+  const useSnippetStore: typeof import('./store/snippetStore')['useSnippetStore']
   const useSorted: typeof import('@vueuse/core')['useSorted']
   const useSpeechRecognition: typeof import('@vueuse/core')['useSpeechRecognition']
   const useSpeechSynthesis: typeof import('@vueuse/core')['useSpeechSynthesis']
@@ -326,15 +328,15 @@ declare module 'vue' {
     readonly eagerComputed: UnwrapRef<typeof import('@vueuse/core')['eagerComputed']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
-    readonly findConflictingSnippets: UnwrapRef<typeof import('./composables/useSnippets')['findConflictingSnippets']>
-    readonly getAllProfiles: UnwrapRef<typeof import('./composables/useSnippets')['getAllProfiles']>
-    readonly getAllSnippets: UnwrapRef<typeof import('./composables/useSnippets')['getAllSnippets']>
+    readonly findConflictingSnippets: UnwrapRef<typeof import('./composables/vscode')['findConflictingSnippets']>
+    readonly getAllProfiles: UnwrapRef<typeof import('./composables/vscode')['getAllProfiles']>
+    readonly getAllSnippets: UnwrapRef<typeof import('./composables/vscode')['getAllSnippets']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
-    readonly getGlobalStorageConfig: UnwrapRef<typeof import('./composables/useSnippets')['getGlobalStorageConfig']>
-    readonly getSnippetItems: UnwrapRef<typeof import('./composables/useSnippets')['getSnippetItems']>
-    readonly getUniqueSnippets: UnwrapRef<typeof import('./composables/useSnippets')['getUniqueSnippets']>
-    readonly getVSCConfigDir: UnwrapRef<typeof import('./composables/useSnippets')['getVSCConfigDir']>
+    readonly getGlobalStorageConfig: UnwrapRef<typeof import('./composables/vscode')['getGlobalStorageConfig']>
+    readonly getSnippetItems: UnwrapRef<typeof import('./composables/vscode')['getSnippetItems']>
+    readonly getUniqueSnippets: UnwrapRef<typeof import('./composables/vscode')['getUniqueSnippets']>
+    readonly getVSCConfigDir: UnwrapRef<typeof import('./composables/vscode')['getVSCConfigDir']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
@@ -373,7 +375,7 @@ declare module 'vue' {
     readonly reactiveComputed: UnwrapRef<typeof import('@vueuse/core')['reactiveComputed']>
     readonly reactiveOmit: UnwrapRef<typeof import('@vueuse/core')['reactiveOmit']>
     readonly reactivePick: UnwrapRef<typeof import('@vueuse/core')['reactivePick']>
-    readonly readFileToJson: UnwrapRef<typeof import('./composables/useSnippets')['readFileToJson']>
+    readonly readFileToJson: UnwrapRef<typeof import('./composables/vscode')['readFileToJson']>
     readonly readonly: UnwrapRef<typeof import('vue')['readonly']>
     readonly ref: UnwrapRef<typeof import('vue')['ref']>
     readonly refAutoReset: UnwrapRef<typeof import('@vueuse/core')['refAutoReset']>
@@ -384,6 +386,7 @@ declare module 'vue' {
     readonly resolveComponent: UnwrapRef<typeof import('vue')['resolveComponent']>
     readonly resolveRef: UnwrapRef<typeof import('@vueuse/core')['resolveRef']>
     readonly resolveUnref: UnwrapRef<typeof import('@vueuse/core')['resolveUnref']>
+    readonly setupStore: UnwrapRef<typeof import('./store/index')['setupStore']>
     readonly shallowReactive: UnwrapRef<typeof import('vue')['shallowReactive']>
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
@@ -526,6 +529,7 @@ declare module 'vue' {
     readonly useSessionStorage: UnwrapRef<typeof import('@vueuse/core')['useSessionStorage']>
     readonly useShare: UnwrapRef<typeof import('@vueuse/core')['useShare']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
+    readonly useSnippetStore: UnwrapRef<typeof import('./store/snippetStore')['useSnippetStore']>
     readonly useSorted: UnwrapRef<typeof import('@vueuse/core')['useSorted']>
     readonly useSpeechRecognition: UnwrapRef<typeof import('@vueuse/core')['useSpeechRecognition']>
     readonly useSpeechSynthesis: UnwrapRef<typeof import('@vueuse/core')['useSpeechSynthesis']>
