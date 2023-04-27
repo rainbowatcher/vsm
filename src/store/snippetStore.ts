@@ -43,45 +43,54 @@ export const useSnippetStore = defineStore("snippet", () => {
     }
   }
 
-  async function refetch() {
+  async function refresh() {
     snippets.value = await db.select<VsmSnippet[]>("select name,lang,prefix,body,desc,tags,create_date as createDate from snippets where del = 0")
-    console.log(snippets.value)
     ElMessage.success("Success")
   }
 
   async function add(snippet?: VsmSnippet) {
     if (!snippet?.name && !snippet?.lang) return ElMessage.warning("snippet is undefined")
-    const index = snippets.value.findIndex(i => i.name === snippet.name)
-    if (index === -1) {
-      snippets.value.push(snippet)
-    } else {
-      snippets.value[index] = snippet
-    }
+    // const index = snippets.value.findIndex(i => i.name === snippet.name)
+    // if (index === -1) {
+    //   snippets.value.push(snippet)
+    // } else {
+    //   snippets.value[index] = snippet
+    // }
     const { name, lang, prefix, body, desc, tags } = snippet
     const { rowsAffected } = await db.execute(`\
     insert into snippets(name, lang, prefix, body, desc, tags) values($6, $1, $2, $3, $4, $5) on conflict(name) 
     do update set lang = $1, prefix = $2, body = $3, desc = $4, tags = $5;`,
     [lang, prefix, body, desc, tags, name])
     if (rowsAffected)
-      ElMessage.success("Success")
+      refresh()
   }
 
-  async function update(snippet: VsmSnippet) {
+  async function update(snippet: VsmSnippet, preName: string) {
     if (!snippet.name && !snippet.lang) return ElMessage.warning("name or lang can't be missing")
-    const index = snippets.value.findIndex(i => i.name === snippet.name)
-    if (index) snippets.value[index] = snippet
-    const db = Database.get(VSM_DB_SCHEMA)
+    // const index = snippets.value.findIndex(i => i.name === snippet.name)
+    // if (index) snippets.value[index] = snippet
+    // const db = Database.get(VSM_DB_SCHEMA)
     const { name, lang, prefix, body, desc, tags } = snippet
     const { rowsAffected } = await db.execute(`\
     update snippets set 
-    lang = $1,
-    prefix = $2,
-    body = $3,
-    desc = $4,
-    tags = $5,
-    where name = $6
-    ;`, [lang, prefix, body, desc, tags, name])
-    if (rowsAffected) ElMessage.success("Success")
+    name = $1,
+    lang = $2,
+    prefix = $3,
+    body = $4,
+    desc = $5,
+    tags = $6
+    where name = $7
+    ;`, [name, lang, prefix, body, desc, tags, preName])
+    if (rowsAffected) refresh()
+    else ElMessage.error(`${rowsAffected} affected`)
+  }
+
+  function save() {
+    if (selectedName.value && selectedName.value != current.value.name) {
+      update(current.value, selectedName.value)
+    } else {
+      update(current.value, current.value.name)
+    }
   }
 
   async function del(name?: string) {
@@ -92,19 +101,13 @@ export const useSnippetStore = defineStore("snippet", () => {
     if (rowsAffected) ElMessage.success("Success")
   }
 
-  function save() {
-    if (selectedName.value != current.value.name)
-      del(selectedName.value)
-    add(current.value)
-    // refetch()
-  }
-
   async function trash(name: string) {
     const { rowsAffected } = await db.execute("update snippets set del = 1 where name = $1", [name])
     if (rowsAffected) ElMessage.success("Success")
   }
 
   return {
+    snippets,
     groupedSnippets,
     current,
     selectedName,
@@ -113,7 +116,7 @@ export const useSnippetStore = defineStore("snippet", () => {
     save,
     update,
     init,
-    refetch,
+    refresh,
     trash,
   }
 })
