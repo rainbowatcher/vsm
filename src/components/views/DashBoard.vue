@@ -18,11 +18,19 @@ const formRef = ref<FormInstance>()
 const { getValue, setLang, setValue, resize, onValueChange } = useMonacoEditor({ container: editorContainer })
 
 onMounted(async () => {
-  Split(["#split-0", "#split-1"], {
+  Split(["#split__snippet-list", "#split__snippet-studio"], {
     sizes: [30, 71],
-    minSize: 0,
+    minSize: [200, 480],
     gutterSize: 8,
-    snapOffset: 100,
+    snapOffset: 20,
+    onDrag: () => resize(),
+  })
+  Split(["#split__snippet-editor", "#split__snippet-meta"], {
+    direction: "vertical",
+    sizes: [30, 70],
+    minSize: [300, 0],
+    gutterSize: 8,
+    snapOffset: [0, 30],
     onDrag: () => resize(),
   })
   onValueChange.value = (e) => {
@@ -31,17 +39,17 @@ onMounted(async () => {
       current.value = { ...current.value, body: value }
     }
   }
-  setTimeout(() => {
+  nextTick(() => {
     resize()
   })
 })
 
 function select(lang: string, name:string) {
   selectedName.value = name
-  const snippet = snippetStore.groupedSnippets[lang].find(i => i.name === name)
+  const snippet = snippetStore.snippets.find(i => i.name === name)
   if (snippet) current.value = snippet
   setValue(snippet?.body || "")
-  setLang(snippet?.lang || "json")
+  setLang(lang || "json")
 }
 
 const rules = reactive<FormRules>({
@@ -66,42 +74,45 @@ async function test() {
 
 <template>
   <div class="split" w-full>
-    <div id="split-0" h="[calc(100vh-2rem)]" mr--2 select-none bg="bg-neutral200">
+    <div id="split__snippet-list" h="[calc(100vh-2rem)]" mr--2 select-none bg="bg-neutral200">
       <VSearchbar />
       <VList :items="snippetStore.groupedSnippets" @select="select" />
     </div>
 
-    <div id="split-1" h="[calc(100vh-2rem)]">
-      <VToolbar @show-add="toggleShow" />
-      <div ref="editorContainer" h="3/5" />
-      <div grid="~ cols-2 auto-rows-min gap4" mt4 h-full px2 text-sm>
-        <VMeta />
+    <div id="split__snippet-studio" h="[calc(100vh-2rem)]">
+      <div class="split-1" h-full>
+        <div id="split__snippet-editor" h-full>
+          <VToolbar @show-add="toggleShow" />
+          <div ref="editorContainer" h-auto h="[calc(100%-2rem)]" />
+        </div>
+        <div id="split__snippet-meta" grid="~ cols-2 auto-rows-min gap4" mt2 h-full px2 text-sm>
+          <VMeta />
+          <VDialog v-model:show="show">
+            <VCard title="Title">
+              <template #extra>
+                <div class="i-carbon-close" text-lg icon-btn @click="toggleShow()" />
+              </template>
 
-        <VDialog v-model:show="show">
-          <VCard title="Title">
-            <template #extra>
-              <div class="i-carbon-close" text-lg icon-btn @click="toggleShow()" />
-            </template>
+              <template #footer>
+                <ElButton plain @click="toggleShow()">
+                  Cancel
+                </ElButton>
+                <ElButton type="primary" @click="submitForm(formRef)">
+                  Confirm
+                </ElButton>
+              </template>
 
-            <template #footer>
-              <ElButton plain @click="toggleShow()">
-                Cancel
-              </ElButton>
-              <ElButton type="primary" @click="submitForm(formRef)">
-                Confirm
-              </ElButton>
-            </template>
-
-            <ElForm ref="formRef" :model="formData" :rules="rules" label-width="3rem">
-              <ElFormItem label="name" prop="name">
-                <ElInput v-model="formData.name" />
-              </ElFormItem>
-              <ElFormItem label="lang" prop="lang">
-                <ElInput v-model="formData.lang" />
-              </ElFormItem>
-            </ElForm>
-          </VCard>
-        </VDialog>
+              <ElForm ref="formRef" :model="formData" :rules="rules" label-width="3rem">
+                <ElFormItem label="name" prop="name">
+                  <ElInput v-model="formData.name" />
+                </ElFormItem>
+                <ElFormItem label="lang" prop="lang">
+                  <ElInput v-model="formData.lang" />
+                </ElFormItem>
+              </ElForm>
+            </VCard>
+          </VDialog>
+        </div>
       </div>
     </div>
   </div>
@@ -129,5 +140,9 @@ async function test() {
 
 :deep(.gutter.gutter-horizontal) {
   cursor: col-resize;
+}
+
+:deep(.gutter.gutter-vertical) {
+  cursor: row-resize;
 }
 </style>
