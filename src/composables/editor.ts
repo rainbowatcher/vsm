@@ -54,7 +54,7 @@ export const useMonacoEditor = (useOptions: EditorOptions) => {
   } = useOptions
 
 
-  watch(container, async () => {
+  const stop = watch(() => unref(container), async () => {
     const _container = unref(container)
     if (!_container) return
     instance.value = monaco.editor.create(_container, { readOnly, minimap: { enabled: minimap }, scrollBeyondLastLine: false })
@@ -71,18 +71,25 @@ export const useMonacoEditor = (useOptions: EditorOptions) => {
       if (isRef(data)) data.value = instance.value?.getValue() || ""
       onValueChange.value?.(e)
     })
+
+    stop()
   })
 
-  watchEffect(() => {
+  watch(useDark(), () => {
     // reactive update theme
     instance.value?.updateOptions({ theme: useDark().value ? "vs-dark" : "vs" })
-    // sync data ref
-    if (isRef(data) && unref(data) !== instance.value?.getValue()) {
+  })
+
+  watch(() => unref(data), () => {
+    if (unref(data) !== instance.value?.getValue()) {
       instance.value?.setValue(unref(data))
     }
+  })
+
+  watch(() => unref(lang), () => {
     // reactive update lang
     if (instance.value?.getModel()) {
-      monaco.editor.setModelLanguage(instance.value.getModel()!, unref(lang))
+      setLang(unref(lang))
     }
   })
 
