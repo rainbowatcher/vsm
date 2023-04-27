@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@iconify-json/carbon': ^1.1.16
+  '@iconify-json/mdi': ^1.1.50
   '@iconify-json/vscode-icons': ^1.1.25
   '@rainbowatcher/eslint-config': 0.1.0
   '@tauri-apps/api': ^1.2.0
@@ -47,6 +48,7 @@ dependencies:
 
 devDependencies:
   '@iconify-json/carbon': 1.1.16
+  '@iconify-json/mdi': 1.1.50
   '@iconify-json/vscode-icons': 1.1.25
   '@rainbowatcher/eslint-config': 0.1.0_voubu7prgxjfsfbgx5d4sqnwiy
   '@tauri-apps/cli': 1.2.3
@@ -599,6 +601,12 @@ packages:
 
   /@iconify-json/carbon/1.1.16:
     resolution: {integrity: sha512-AD8bcnRSGA0WfcGEass2FbA0sagrUzrpFx5WchuDy3uf7yKBWumdypdQK121DH321fQDl5+zZQ26T6gC9knwUQ==}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: true
+
+  /@iconify-json/mdi/1.1.50:
+    resolution: {integrity: sha512-SgbT5w5eHCdOG74ZWPz7HlTGk6VsifIJhNi6lAsxj/5Nlqt6Cz4LlQmSa9eecU9p075Jub2aAx/o7YI+GCahRQ==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true

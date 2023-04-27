@@ -74,10 +74,35 @@ html.dark {
 
 /* element plus */
 .el-message {
+  transform: translateY(+50%) translateX(-50%);
+}
+
+.dark .el-message {
   --el-color-success: #10b981;
   /* border */
-  /* --el-color-success-light-8: #bbf7d022; */
+  --el-color-success-light-8: #bbf7d022;
+  --el-color-warning-light-8: #bbf7d022;
+  --el-color-danger-light-8: #bbf7d022;
   /* background */
-  --el-color-success-light-9: #404040;
-  transform: translateY(+50%) translateX(-50%);
+  --el-color-success-light-9: #262626;
+  --el-color-warning-light-9: #262626;
+  --el-color-danger-light-9: #262626;
+}
+
+/* collapse */
+.el-collapse {
+  --el-transition-duration: 100ms;
+}
+
+.el-collapse-item__header {
+  height: 2rem;
+  padding: 0px 8px;
+}
+
+.el-collapse-item__content {
+  padding-bottom: 0;
+}
+
+.dark .el-collapse-item__header {
+  background-color: #484848;
 }
