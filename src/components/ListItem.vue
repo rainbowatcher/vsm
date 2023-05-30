@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { VsmSnippet } from "@composables/vscode"
+import type { VsmSnippetView } from "../types/snippett"
 
 const props = defineProps<{
-  item: VsmSnippet
+  item: VsmSnippetView
 }>()
 
 const tags = computed(() => props.item.tags?.split(","))
@@ -14,15 +14,16 @@ const tags = computed(() => props.item.tags?.split(","))
     w-full cursor-pointer select-none px2 py1 transition duration-200
   >
     <div flex justify-between>
-      <span font-mono text-3>{{ item.name }}</span>
-      <span font-mono>{{ item.prefix }}</span>
+      <span mr2 truncate font-mono text-3>{{ item.name }}</span>
+      <span w-6rem truncate font-mono>{{ item.keyword }}</span>
     </div>
     <span flex="~ row gap-1" col-span-2 truncate>
       <ElTag
         v-for="tag in tags" :key="tag" type="info"
         effect="plain"
         size="small" round
-      >{{ tag }}</ElTag>
+      >{{ tag }}
+      </ElTag>
     </span>
   </div>
 </template>

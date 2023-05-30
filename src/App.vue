@@ -1,17 +1,14 @@
-<script setup lang="ts">
-</script>
-
 <template>
-  <VLayout>
-    <template #menu>
-      <VSideMenu />
-    </template>
-    <template #header>
-      <VHeader />
-    </template>
-    <template #content>
+  <ElConfigProvider>
+    <BaseLayout>
+      <template #header>
+        <Header />
+      </template>
+      <template #menu>
+        <SideMenu />
+      </template>
       <RouterView />
-    </template>
-  </VLayout>
+    </BaseLayout>
+  </ElConfigProvider>
 </template>
 

@@ -1,4 +1,13 @@
 {
   "extends": ["@rainbowatcher", "@unocss"],
-  "ignorePatterns": ["crates/tauri-plugin-sql"]
+  "ignorePatterns": ["crates/tauri-plugin-sql"],
+  "rules": {
+    // not compatible with vue@3.3
+    // "vue/comma-dangle": "off",
+    // "vue/dot-location": "off",
+    // "vue/space-unary-ops": "off",
+    // "vue/block-tag-newline": "off",
+    // "vue/component-name-in-template-casing": "off",
+    // "vue/custom-event-name-casing": "off"
+  }
 }

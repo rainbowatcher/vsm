@@ -24,8 +24,22 @@
         "all": true
       },
       "window": {
+        "create": true,
+        "setResizable": true,
+        "setFocus": true,
+        "setDecorations": true,
+        "setSkipTaskbar": true,
         "startDragging": true
+      },
+      "dialog": {
+        "all": true,
+        "open": true,
+        "save": true
       }
+    },
+    "systemTray": {
+      "iconPath": "icons/tray-icon.png",
+      "iconAsTemplate": true
     },
     "bundle": {
       "active": true,
@@ -36,7 +50,7 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "vms",
+      "identifier": "vsm",
       "targets": "all"
     },
     "security": {
@@ -50,7 +64,6 @@
         "fullscreen": false,
         "resizable": true,
         "hiddenTitle": true,
-        "titleBarStyle": "Overlay",
         "width": 1024,
         "height": 768
       }

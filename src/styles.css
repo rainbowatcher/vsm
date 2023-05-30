@@ -1,8 +1,9 @@
 :root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font: 16px/1.5 "Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
+  /* font-family: Helvetica, Times New Roman, STHeiti, Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 24px;
-  font-weight: 400;
+  font-weight: 400; */
 
   color: #262626;
   background-color: #fefefe;
@@ -14,39 +15,38 @@
   -webkit-text-size-adjust: 100%;
 
   /* colors */
-  --c-electric-primary-100:#FFD700;
-  --c-electric-primary-200:#ddb900;
-  --c-electric-primary-300:#917800;
-  --c-electric-accent-100:#00FFFF;
-  --c-electric-accent-200:#00999b;
-  --c-electric-text-100:#FFFFFF;
-  --c-electric-text-200:#e0e0e0;
-  --c-electric-bg-100:#1E1E1E;
-  --c-electric-bg-200:#2d2d2d;
-  --c-electric-bg-300:#454545;
+  --c-electric-primary-100: #ffd700;
+  --c-electric-primary-200: #ddb900;
+  --c-electric-primary-300: #917800;
+  --c-electric-accent-100: #00ffff;
+  --c-electric-accent-200: #00999b;
+  --c-electric-text-100: #ffffff;
+  --c-electric-text-200: #e0e0e0;
+  --c-electric-bg-100: #1e1e1e;
+  --c-electric-bg-200: #2d2d2d;
+  --c-electric-bg-300: #454545;
 
-  --c-tiktok-dark-primary-100:#FF2D55;
-  --c-tiktok-dark-primary-200:#ff6b81;
-  --c-tiktok-dark-primary-300:#ffd8e2;
-  --c-tiktok-dark-accent-100:#8E8E93;
-  --c-tiktok-dark-accent-200:#37373b;
-  --c-tiktok-dark-text-100:#FFFFFF;
-  --c-tiktok-dark-text-200:#e0e0e0;
-  --c-tiktok-dark-bg-100:#1C1C1E;
-  --c-tiktok-dark-bg-200:#2b2b2d;
-  --c-tiktok-dark-bg-300:#434345;
-    
-  --c-tiktok-primary-100:#EE1D52;
-  --c-tiktok-primary-200:#ff607e;
-  --c-tiktok-primary-300:#ffcddf;
-  --c-tiktok-accent-100:#FFC107;
-  --c-tiktok-accent-200:#916400;
-  --c-tiktok-text-100:#333333;
-  --c-tiktok-text-200:#5c5c5c;
-  --c-tiktok-bg-100:#F7F7F7;
-  --c-tiktok-bg-200:#ededed;
-  --c-tiktok-bg-300:#c4c4c4;
-    
+  --c-tiktok-dark-primary-100: #ff2d55;
+  --c-tiktok-dark-primary-200: #ff6b81;
+  --c-tiktok-dark-primary-300: #ffd8e2;
+  --c-tiktok-dark-accent-100: #8e8e93;
+  --c-tiktok-dark-accent-200: #37373b;
+  --c-tiktok-dark-text-100: #ffffff;
+  --c-tiktok-dark-text-200: #e0e0e0;
+  --c-tiktok-dark-bg-100: #1c1c1e;
+  --c-tiktok-dark-bg-200: #2b2b2d;
+  --c-tiktok-dark-bg-300: #434345;
+
+  --c-tiktok-primary-100: #ee1d52;
+  --c-tiktok-primary-200: #ff607e;
+  --c-tiktok-primary-300: #ffcddf;
+  --c-tiktok-accent-100: #ffc107;
+  --c-tiktok-accent-200: #916400;
+  --c-tiktok-text-100: #333333;
+  --c-tiktok-text-200: #5c5c5c;
+  --c-tiktok-bg-100: #f7f7f7;
+  --c-tiktok-bg-200: #ededed;
+  --c-tiktok-bg-300: #c4c4c4;
 }
 
 * {
@@ -70,6 +70,35 @@ li {
 html.dark {
   color: #f6f6f6;
   background-color: #404040;
+}
+
+/* split.js */
+.split {
+  display: flex;
+  flex-direction: row;
+}
+
+.gutter {
+  border-right: 1px solid #00000018;
+  z-index: 99;
+}
+
+.gutter:hover {
+  background-color: #464e5758;
+  opacity: 1;
+}
+
+.gutter:active {
+  background-color: #45505b68;
+  opacity: 1;
+}
+
+.gutter.gutter-horizontal {
+  cursor: col-resize;
+}
+
+.gutter.gutter-vertical {
+  cursor: row-resize;
 }
 
 /* element plus */
@@ -105,4 +134,8 @@ html.dark {
 
 .dark .el-collapse-item__header {
   background-color: #484848;
+}
+
+.dark .el-divider__text {
+  background-color: #404040;
 }

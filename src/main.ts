@@ -15,4 +15,4 @@ function main() {
   app.mount("#app")
 }
 
-void main()
+main()

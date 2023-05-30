@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest"
-import { deepCompare } from "../src/composables/util"
+import { deepCompare, validateObjectProperties } from "../src/composables/util"
 
 describe("deepCompare function", () => {
   it("Accurately compare two non-object", () => {
@@ -45,4 +45,40 @@ describe("deepCompare function", () => {
     expect(deepCompare({ a: 1, b: [2, 3] }, "apple")).toBe(false)
     expect(deepCompare("", { a: 1, b: [2] })).toBe(false)
   })
+
+  it("compare two objects specified by key and return whether they are equal.", () => {
+    const obj1 = { a: 1, b: { c: [0, 1] }, d: 2 }
+    const obj2 = { d: 3, b: { c: [0, 1] }, a: 1 }
+    const keys = ["a", "b"]
+    expect(deepCompare(obj1, obj2, keys)).toBe(true)
+    expect(deepCompare(obj1, obj2, ["a", "b", "d"])).toBe(false)
+  })
+
+  it("should be able to recognize null and undefined", () => {
+    expect(deepCompare(null, undefined)).toBe(false)
+    expect(deepCompare(undefined, null)).toBe(false)
+  })
+
 })
+
+
+describe("validateObjectProperties", () => {
+  it("should return true when object has all properties defined", () => {
+    const object = { name: "John", age: 30 }
+    const properties = ["name", "age"]
+    expect(validateObjectProperties(object, properties)).toBe(true)
+  })
+
+  it("should return false when object has at least one property undefined", () => {
+    const object = { name: "John", age: 30 }
+    const properties = ["name", "email"]
+    expect(validateObjectProperties(object, properties)).toBe(false)
+  })
+
+  it("should return false when object is missing all properties", () => {
+    const object = {}
+    const properties = ["name", "email"]
+    expect(validateObjectProperties(object, properties)).toBe(false)
+  })
+})
+

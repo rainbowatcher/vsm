@@ -10,11 +10,12 @@ import { ElementPlusResolver } from "unplugin-vue-components/resolvers"
 // const __dirname = encodeURI(import.meta.url)
 
 // https://vitejs.dev/config/
-export default defineConfig(async () => ({
+export default defineConfig(() => ({
   resolve: {
     alias: {
       "@components/": `${path.resolve(__dirname, "src/components")}/`,
       "@composables/": `${path.resolve(__dirname, "src/composables")}/`,
+      "@store/": `${path.resolve(__dirname, "src/store")}/`,
     },
   },
   plugins: [
@@ -24,9 +25,10 @@ export default defineConfig(async () => ({
         "vue",
         "@vueuse/core",
         "vue-router",
+        "pinia",
       ],
       resolvers: [ElementPlusResolver()],
-      dirs: ["src/composables/**", "src/store/**"],
+      dirs: ["src/components/**", "src/composables/**", "src/store/**"],
       vueTemplate: true,
       dts: "src/auto-imports.d.ts",
     }),

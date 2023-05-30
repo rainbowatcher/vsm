@@ -18,7 +18,13 @@ serde_json = "1.0"
 
 [dependencies.tauri]
 version = "1.2"
-features = [
+features = [ "system-tray",
+  "dialog-all",
+  "window-set-decorations",
+  "window-set-resizable",
+  "window-set-skip-taskbar",
+  "window-create",
+  "window-set-focus",
   "fs-read-dir",
   "fs-read-file",
   "path-all",

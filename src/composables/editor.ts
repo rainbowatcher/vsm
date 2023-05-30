@@ -1,4 +1,5 @@
 import type { MaybeRef } from "@vueuse/core"
+import type { Ref } from "vue"
 import { useDark, useToggle } from "@vueuse/core"
 import * as monaco from "monaco-editor"
 import editorWorker from "monaco-editor/esm/vs/editor/editor.worker?worker"
@@ -6,9 +7,10 @@ import jsonWorker from "monaco-editor/esm/vs/language/json/json.worker?worker"
 import cssWorker from "monaco-editor/esm/vs/language/css/css.worker?worker"
 import htmlWorker from "monaco-editor/esm/vs/language/html/html.worker?worker"
 import tsWorker from "monaco-editor/esm/vs/language/typescript/ts.worker?worker"
-import type { Ref } from "vue"
-import { isRef, nextTick, shallowRef, unref, watchEffect } from "vue"
+import { isRef, shallowRef, unref } from "vue"
 
+const isDark = useDark()
+// function useWorker() {
 self.MonacoEnvironment = {
   getWorker(_workerId, label) {
     switch (label) {
@@ -32,16 +34,18 @@ self.MonacoEnvironment = {
 }
 
 monaco.languages.typescript.typescriptDefaults.setEagerModelSync(true)
+// }
+
 
 export type EditorOptions = {
   container: Ref<HTMLDivElement | undefined>
   data?: MaybeRef<string>
   lang?: MaybeRef<string>
-  minimap?: boolean
-  readOnly?: boolean
+  hasMinimap?: boolean
+  isReadOnly?: boolean
 }
 
-export const useMonacoEditor = (useOptions: EditorOptions) => {
+export function useMonacoEditor(useOptions: EditorOptions) {
   const instance = shallowRef<monaco.editor.IStandaloneCodeEditor>()
   const [isLoading, toggleLoading] = useToggle(true)
   const onValueChange = ref<(e: monaco.editor.IModelContentChangedEvent) => any>()
@@ -49,15 +53,15 @@ export const useMonacoEditor = (useOptions: EditorOptions) => {
     data = "",
     lang = "handlebars",
     container,
-    minimap = false,
-    readOnly = false,
+    hasMinimap = false,
+    isReadOnly = false,
   } = useOptions
 
 
-  const stop = watch(() => unref(container), async () => {
-    const _container = unref(container)
-    if (!_container) return
-    instance.value = monaco.editor.create(_container, { readOnly, minimap: { enabled: minimap }, scrollBeyondLastLine: false })
+  const stop = watch(() => unref(container), () => {
+    const containerValue = unref(container)
+    if (!containerValue) return
+    instance.value = monaco.editor.create(containerValue, { readOnly: isReadOnly, minimap: { enabled: hasMinimap }, scrollBeyondLastLine: false })
     toggleLoading(false)
 
     // auto resize when window resized
@@ -75,9 +79,9 @@ export const useMonacoEditor = (useOptions: EditorOptions) => {
     stop()
   })
 
-  watch(useDark(), () => {
+  watch([isDark, () => instance.value], () => {
     // reactive update theme
-    instance.value?.updateOptions({ theme: useDark().value ? "vs-dark" : "vs" })
+    instance.value?.updateOptions({ theme: isDark.value ? "vs-dark" : "vs" })
   })
 
   watch(() => unref(data), () => {
@@ -136,8 +140,17 @@ export const useMonacoEditor = (useOptions: EditorOptions) => {
   // }
 
   function setLang(lang: string) {
+    let targetLang = "handlebars"
+    switch (lang) {
+      // case "vue":
+      //   _lang = "javascript"
+      //   break
+      default:
+        targetLang = lang
+    }
     if (instance.value) {
-      monaco.editor.setModelLanguage(instance.value.getModel()!, lang)
+      console.log(targetLang)
+      monaco.editor.setModelLanguage(instance.value.getModel()!, targetLang)
     }
   }
 

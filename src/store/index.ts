@@ -5,5 +5,5 @@ export function setupStore(app: App) {
   const store = createPinia()
   app.use(store)
 
-  useSnippetStore().init()
+  void useSnippetStore().init()
 }

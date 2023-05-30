@@ -6,6 +6,7 @@ import {
   transformerDirectives,
   transformerVariantGroup,
 } from "unocss"
+import { useSideMenu } from "./src/composables/app"
 
 export default defineConfig({
   shortcuts: [
@@ -26,4 +27,5 @@ export default defineConfig({
     transformerVariantGroup(),
     transformerDirectives(),
   ],
+  safelist: [...useSideMenu().sideMenuItems.value.map(i => i.icon)],
 })

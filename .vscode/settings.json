@@ -6,5 +6,6 @@
   "cSpell.words": [
     "Attributify"
   ],
-  "vue.features.codeActions.enable": false
+  "vue.features.codeActions.enable": false,
+  "vue.codeActions.enabled": false
 }

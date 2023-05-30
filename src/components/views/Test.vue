@@ -3,18 +3,15 @@
 </script>
 
 <template>
-  <el-tabs tab-position="left" style="height: 200px" class="demo-tabs">
-    <el-tab-pane label="User">
-      User
-    </el-tab-pane>
-    <el-tab-pane label="Config">
-      Config
-    </el-tab-pane>
-    <el-tab-pane label="Role">
-      Role
-    </el-tab-pane>
-    <el-tab-pane label="Task">
-      Task
-    </el-tab-pane>
-  </el-tabs>
+  <ElCollapse>
+    <ElCollapseItem title="青铜" name="1">
+      <div>可以</div>
+    </ElCollapseItem>
+    <ElCollapseItem title="白银" name="2">
+      <div>很好</div>
+    </ElCollapseItem>
+    <ElCollapseItem title="黄金" name="3">
+      <div>真棒</div>
+    </ElCollapseItem>
+  </ElCollapse>
 </template>
