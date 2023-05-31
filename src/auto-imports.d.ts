@@ -19,20 +19,18 @@ declare global {
   const createApp: typeof import('vue')['createApp']
   const createEventHook: typeof import('@vueuse/core')['createEventHook']
   const createGlobalState: typeof import('@vueuse/core')['createGlobalState']
-  const createIfNotExists: typeof import('./composables/db')['createIfNotExists']
   const createInjectionState: typeof import('@vueuse/core')['createInjectionState']
   const createPinia: typeof import('pinia')['createPinia']
   const createReactiveFn: typeof import('@vueuse/core')['createReactiveFn']
   const createReusableTemplate: typeof import('@vueuse/core')['createReusableTemplate']
   const createSharedComposable: typeof import('@vueuse/core')['createSharedComposable']
-  const createTableIfNotExists: typeof import('./composables/db')['createTableIfNotExists']
   const createTemplatePromise: typeof import('@vueuse/core')['createTemplatePromise']
   const createUnrefFn: typeof import('@vueuse/core')['createUnrefFn']
   const customRef: typeof import('vue')['customRef']
-  const dbMetadata: typeof import('./composables/db')['dbMetadata']
+  const dbMetadata: typeof import('./hooks/db')['dbMetadata']
   const debouncedRef: typeof import('@vueuse/core')['debouncedRef']
   const debouncedWatch: typeof import('@vueuse/core')['debouncedWatch']
-  const deepCompare: typeof import('./composables/util')['deepCompare']
+  const deepCompare: typeof import('./hooks/util')['deepCompare']
   const defineAsyncComponent: typeof import('vue')['defineAsyncComponent']
   const defineComponent: typeof import('vue')['defineComponent']
   const defineStore: typeof import('pinia')['defineStore']
@@ -58,7 +56,7 @@ declare global {
   const mapStores: typeof import('pinia')['mapStores']
   const mapWritableState: typeof import('pinia')['mapWritableState']
   const markRaw: typeof import('vue')['markRaw']
-  const metaRepo: typeof import('./composables/db')['metaRepo']
+  const metaRepo: typeof import('./hooks/db')['metaRepo']
   const nextTick: typeof import('vue')['nextTick']
   const onActivated: typeof import('vue')['onActivated']
   const onBeforeMount: typeof import('vue')['onBeforeMount']
@@ -104,7 +102,7 @@ declare global {
   const shallowReactive: typeof import('vue')['shallowReactive']
   const shallowReadonly: typeof import('vue')['shallowReadonly']
   const shallowRef: typeof import('vue')['shallowRef']
-  const snippetsRepo: typeof import('./composables/db')['snippetsRepo']
+  const snippetsRepo: typeof import('./hooks/db')['snippetsRepo']
   const storeToRefs: typeof import('pinia')['storeToRefs']
   const syncRef: typeof import('@vueuse/core')['syncRef']
   const syncRefs: typeof import('@vueuse/core')['syncRefs']
@@ -116,7 +114,7 @@ declare global {
   const toRef: typeof import('vue')['toRef']
   const toRefs: typeof import('vue')['toRefs']
   const toValue: typeof import('vue')['toValue']
-  const trashRepo: typeof import('./composables/db')['trashRepo']
+  const trashRepo: typeof import('./hooks/db')['trashRepo']
   const triggerRef: typeof import('vue')['triggerRef']
   const tryOnBeforeMount: typeof import('@vueuse/core')['tryOnBeforeMount']
   const tryOnBeforeUnmount: typeof import('@vueuse/core')['tryOnBeforeUnmount']
@@ -209,8 +207,8 @@ declare global {
   const useMediaQuery: typeof import('@vueuse/core')['useMediaQuery']
   const useMemoize: typeof import('@vueuse/core')['useMemoize']
   const useMemory: typeof import('@vueuse/core')['useMemory']
-  const useMonacoDiffEditor: typeof import('./composables/diffEditor')['useMonacoDiffEditor']
-  const useMonacoEditor: typeof import('./composables/editor')['useMonacoEditor']
+  const useMonacoDiffEditor: typeof import('./hooks/diffEditor')['useMonacoDiffEditor']
+  const useMonacoEditor: typeof import('./hooks/editor')['useMonacoEditor']
   const useMounted: typeof import('@vueuse/core')['useMounted']
   const useMouse: typeof import('@vueuse/core')['useMouse']
   const useMouseInElement: typeof import('@vueuse/core')['useMouseInElement']
@@ -246,11 +244,11 @@ declare global {
   const useScriptTag: typeof import('@vueuse/core')['useScriptTag']
   const useScroll: typeof import('@vueuse/core')['useScroll']
   const useScrollLock: typeof import('@vueuse/core')['useScrollLock']
-  const useSearch: typeof import('./composables/util')['useSearch']
+  const useSearch: typeof import('./hooks/util')['useSearch']
   const useSessionStorage: typeof import('@vueuse/core')['useSessionStorage']
-  const useSettings: typeof import('./composables/app')['useSettings']
+  const useSettings: typeof import('./hooks/app')['useSettings']
   const useShare: typeof import('@vueuse/core')['useShare']
-  const useSideMenu: typeof import('./composables/app')['useSideMenu']
+  const useSideMenu: typeof import('./hooks/app')['useSideMenu']
   const useSlots: typeof import('vue')['useSlots']
   const useSnippetStore: typeof import('./store/snippetStore')['useSnippetStore']
   const useSorted: typeof import('@vueuse/core')['useSorted']
@@ -294,7 +292,7 @@ declare global {
   const useWindowFocus: typeof import('@vueuse/core')['useWindowFocus']
   const useWindowScroll: typeof import('@vueuse/core')['useWindowScroll']
   const useWindowSize: typeof import('@vueuse/core')['useWindowSize']
-  const validateObjectProperties: typeof import('./composables/util')['validateObjectProperties']
+  const validateObjectProperties: typeof import('./hooks/util')['validateObjectProperties']
   const watch: typeof import('vue')['watch']
   const watchArray: typeof import('@vueuse/core')['watchArray']
   const watchAtMost: typeof import('@vueuse/core')['watchAtMost']
@@ -344,10 +342,10 @@ declare module 'vue' {
     readonly createTemplatePromise: UnwrapRef<typeof import('@vueuse/core')['createTemplatePromise']>
     readonly createUnrefFn: UnwrapRef<typeof import('@vueuse/core')['createUnrefFn']>
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
-    readonly dbMetadata: UnwrapRef<typeof import('./composables/db')['dbMetadata']>
+    readonly dbMetadata: UnwrapRef<typeof import('./hooks/db')['dbMetadata']>
     readonly debouncedRef: UnwrapRef<typeof import('@vueuse/core')['debouncedRef']>
     readonly debouncedWatch: UnwrapRef<typeof import('@vueuse/core')['debouncedWatch']>
-    readonly deepCompare: UnwrapRef<typeof import('./composables/util')['deepCompare']>
+    readonly deepCompare: UnwrapRef<typeof import('./hooks/util')['deepCompare']>
     readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
     readonly defineComponent: UnwrapRef<typeof import('vue')['defineComponent']>
     readonly defineStore: UnwrapRef<typeof import('pinia')['defineStore']>
@@ -373,7 +371,7 @@ declare module 'vue' {
     readonly mapStores: UnwrapRef<typeof import('pinia')['mapStores']>
     readonly mapWritableState: UnwrapRef<typeof import('pinia')['mapWritableState']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
-    readonly metaRepo: UnwrapRef<typeof import('./composables/db')['metaRepo']>
+    readonly metaRepo: UnwrapRef<typeof import('./hooks/db')['metaRepo']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
     readonly onActivated: UnwrapRef<typeof import('vue')['onActivated']>
     readonly onBeforeMount: UnwrapRef<typeof import('vue')['onBeforeMount']>
@@ -419,7 +417,7 @@ declare module 'vue' {
     readonly shallowReactive: UnwrapRef<typeof import('vue')['shallowReactive']>
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
-    readonly snippetsRepo: UnwrapRef<typeof import('./composables/db')['snippetsRepo']>
+    readonly snippetsRepo: UnwrapRef<typeof import('./hooks/db')['snippetsRepo']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
     readonly syncRef: UnwrapRef<typeof import('@vueuse/core')['syncRef']>
     readonly syncRefs: UnwrapRef<typeof import('@vueuse/core')['syncRefs']>
@@ -431,7 +429,7 @@ declare module 'vue' {
     readonly toRef: UnwrapRef<typeof import('vue')['toRef']>
     readonly toRefs: UnwrapRef<typeof import('vue')['toRefs']>
     readonly toValue: UnwrapRef<typeof import('vue')['toValue']>
-    readonly trashRepo: UnwrapRef<typeof import('./composables/db')['trashRepo']>
+    readonly trashRepo: UnwrapRef<typeof import('./hooks/db')['trashRepo']>
     readonly triggerRef: UnwrapRef<typeof import('vue')['triggerRef']>
     readonly tryOnBeforeMount: UnwrapRef<typeof import('@vueuse/core')['tryOnBeforeMount']>
     readonly tryOnBeforeUnmount: UnwrapRef<typeof import('@vueuse/core')['tryOnBeforeUnmount']>
@@ -524,8 +522,8 @@ declare module 'vue' {
     readonly useMediaQuery: UnwrapRef<typeof import('@vueuse/core')['useMediaQuery']>
     readonly useMemoize: UnwrapRef<typeof import('@vueuse/core')['useMemoize']>
     readonly useMemory: UnwrapRef<typeof import('@vueuse/core')['useMemory']>
-    readonly useMonacoDiffEditor: UnwrapRef<typeof import('./composables/diffEditor')['useMonacoDiffEditor']>
-    readonly useMonacoEditor: UnwrapRef<typeof import('./composables/editor')['useMonacoEditor']>
+    readonly useMonacoDiffEditor: UnwrapRef<typeof import('./hooks/diffEditor')['useMonacoDiffEditor']>
+    readonly useMonacoEditor: UnwrapRef<typeof import('./hooks/editor')['useMonacoEditor']>
     readonly useMounted: UnwrapRef<typeof import('@vueuse/core')['useMounted']>
     readonly useMouse: UnwrapRef<typeof import('@vueuse/core')['useMouse']>
     readonly useMouseInElement: UnwrapRef<typeof import('@vueuse/core')['useMouseInElement']>
@@ -561,11 +559,11 @@ declare module 'vue' {
     readonly useScriptTag: UnwrapRef<typeof import('@vueuse/core')['useScriptTag']>
     readonly useScroll: UnwrapRef<typeof import('@vueuse/core')['useScroll']>
     readonly useScrollLock: UnwrapRef<typeof import('@vueuse/core')['useScrollLock']>
-    readonly useSearch: UnwrapRef<typeof import('./composables/util')['useSearch']>
+    readonly useSearch: UnwrapRef<typeof import('./hooks/util')['useSearch']>
     readonly useSessionStorage: UnwrapRef<typeof import('@vueuse/core')['useSessionStorage']>
-    readonly useSettings: UnwrapRef<typeof import('./composables/app')['useSettings']>
+    readonly useSettings: UnwrapRef<typeof import('./hooks/app')['useSettings']>
     readonly useShare: UnwrapRef<typeof import('@vueuse/core')['useShare']>
-    readonly useSideMenu: UnwrapRef<typeof import('./composables/app')['useSideMenu']>
+    readonly useSideMenu: UnwrapRef<typeof import('./hooks/app')['useSideMenu']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
     readonly useSnippetStore: UnwrapRef<typeof import('./store/snippetStore')['useSnippetStore']>
     readonly useSorted: UnwrapRef<typeof import('@vueuse/core')['useSorted']>
@@ -609,7 +607,7 @@ declare module 'vue' {
     readonly useWindowFocus: UnwrapRef<typeof import('@vueuse/core')['useWindowFocus']>
     readonly useWindowScroll: UnwrapRef<typeof import('@vueuse/core')['useWindowScroll']>
     readonly useWindowSize: UnwrapRef<typeof import('@vueuse/core')['useWindowSize']>
-    readonly validateObjectProperties: UnwrapRef<typeof import('./composables/util')['validateObjectProperties']>
+    readonly validateObjectProperties: UnwrapRef<typeof import('./hooks/util')['validateObjectProperties']>
     readonly watch: UnwrapRef<typeof import('vue')['watch']>
     readonly watchArray: UnwrapRef<typeof import('@vueuse/core')['watchArray']>
     readonly watchAtMost: UnwrapRef<typeof import('@vueuse/core')['watchAtMost']>
@@ -653,10 +651,10 @@ declare module '@vue/runtime-core' {
     readonly createTemplatePromise: UnwrapRef<typeof import('@vueuse/core')['createTemplatePromise']>
     readonly createUnrefFn: UnwrapRef<typeof import('@vueuse/core')['createUnrefFn']>
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
-    readonly dbMetadata: UnwrapRef<typeof import('./composables/db')['dbMetadata']>
+    readonly dbMetadata: UnwrapRef<typeof import('./hooks/db')['dbMetadata']>
     readonly debouncedRef: UnwrapRef<typeof import('@vueuse/core')['debouncedRef']>
     readonly debouncedWatch: UnwrapRef<typeof import('@vueuse/core')['debouncedWatch']>
-    readonly deepCompare: UnwrapRef<typeof import('./composables/util')['deepCompare']>
+    readonly deepCompare: UnwrapRef<typeof import('./hooks/util')['deepCompare']>
     readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
     readonly defineComponent: UnwrapRef<typeof import('vue')['defineComponent']>
     readonly defineStore: UnwrapRef<typeof import('pinia')['defineStore']>
@@ -682,7 +680,7 @@ declare module '@vue/runtime-core' {
     readonly mapStores: UnwrapRef<typeof import('pinia')['mapStores']>
     readonly mapWritableState: UnwrapRef<typeof import('pinia')['mapWritableState']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
-    readonly metaRepo: UnwrapRef<typeof import('./composables/db')['metaRepo']>
+    readonly metaRepo: UnwrapRef<typeof import('./hooks/db')['metaRepo']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
     readonly onActivated: UnwrapRef<typeof import('vue')['onActivated']>
     readonly onBeforeMount: UnwrapRef<typeof import('vue')['onBeforeMount']>
@@ -728,7 +726,7 @@ declare module '@vue/runtime-core' {
     readonly shallowReactive: UnwrapRef<typeof import('vue')['shallowReactive']>
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
-    readonly snippetsRepo: UnwrapRef<typeof import('./composables/db')['snippetsRepo']>
+    readonly snippetsRepo: UnwrapRef<typeof import('./hooks/db')['snippetsRepo']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
     readonly syncRef: UnwrapRef<typeof import('@vueuse/core')['syncRef']>
     readonly syncRefs: UnwrapRef<typeof import('@vueuse/core')['syncRefs']>
@@ -740,7 +738,7 @@ declare module '@vue/runtime-core' {
     readonly toRef: UnwrapRef<typeof import('vue')['toRef']>
     readonly toRefs: UnwrapRef<typeof import('vue')['toRefs']>
     readonly toValue: UnwrapRef<typeof import('vue')['toValue']>
-    readonly trashRepo: UnwrapRef<typeof import('./composables/db')['trashRepo']>
+    readonly trashRepo: UnwrapRef<typeof import('./hooks/db')['trashRepo']>
     readonly triggerRef: UnwrapRef<typeof import('vue')['triggerRef']>
     readonly tryOnBeforeMount: UnwrapRef<typeof import('@vueuse/core')['tryOnBeforeMount']>
     readonly tryOnBeforeUnmount: UnwrapRef<typeof import('@vueuse/core')['tryOnBeforeUnmount']>
@@ -833,8 +831,8 @@ declare module '@vue/runtime-core' {
     readonly useMediaQuery: UnwrapRef<typeof import('@vueuse/core')['useMediaQuery']>
     readonly useMemoize: UnwrapRef<typeof import('@vueuse/core')['useMemoize']>
     readonly useMemory: UnwrapRef<typeof import('@vueuse/core')['useMemory']>
-    readonly useMonacoDiffEditor: UnwrapRef<typeof import('./composables/diffEditor')['useMonacoDiffEditor']>
-    readonly useMonacoEditor: UnwrapRef<typeof import('./composables/editor')['useMonacoEditor']>
+    readonly useMonacoDiffEditor: UnwrapRef<typeof import('./hooks/diffEditor')['useMonacoDiffEditor']>
+    readonly useMonacoEditor: UnwrapRef<typeof import('./hooks/editor')['useMonacoEditor']>
     readonly useMounted: UnwrapRef<typeof import('@vueuse/core')['useMounted']>
     readonly useMouse: UnwrapRef<typeof import('@vueuse/core')['useMouse']>
     readonly useMouseInElement: UnwrapRef<typeof import('@vueuse/core')['useMouseInElement']>
@@ -870,11 +868,11 @@ declare module '@vue/runtime-core' {
     readonly useScriptTag: UnwrapRef<typeof import('@vueuse/core')['useScriptTag']>
     readonly useScroll: UnwrapRef<typeof import('@vueuse/core')['useScroll']>
     readonly useScrollLock: UnwrapRef<typeof import('@vueuse/core')['useScrollLock']>
-    readonly useSearch: UnwrapRef<typeof import('./composables/util')['useSearch']>
+    readonly useSearch: UnwrapRef<typeof import('./hooks/util')['useSearch']>
     readonly useSessionStorage: UnwrapRef<typeof import('@vueuse/core')['useSessionStorage']>
-    readonly useSettings: UnwrapRef<typeof import('./composables/app')['useSettings']>
+    readonly useSettings: UnwrapRef<typeof import('./hooks/app')['useSettings']>
     readonly useShare: UnwrapRef<typeof import('@vueuse/core')['useShare']>
-    readonly useSideMenu: UnwrapRef<typeof import('./composables/app')['useSideMenu']>
+    readonly useSideMenu: UnwrapRef<typeof import('./hooks/app')['useSideMenu']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
     readonly useSnippetStore: UnwrapRef<typeof import('./store/snippetStore')['useSnippetStore']>
     readonly useSorted: UnwrapRef<typeof import('@vueuse/core')['useSorted']>
@@ -918,7 +916,7 @@ declare module '@vue/runtime-core' {
     readonly useWindowFocus: UnwrapRef<typeof import('@vueuse/core')['useWindowFocus']>
     readonly useWindowScroll: UnwrapRef<typeof import('@vueuse/core')['useWindowScroll']>
     readonly useWindowSize: UnwrapRef<typeof import('@vueuse/core')['useWindowSize']>
-    readonly validateObjectProperties: UnwrapRef<typeof import('./composables/util')['validateObjectProperties']>
+    readonly validateObjectProperties: UnwrapRef<typeof import('./hooks/util')['validateObjectProperties']>
     readonly watch: UnwrapRef<typeof import('vue')['watch']>
     readonly watchArray: UnwrapRef<typeof import('@vueuse/core')['watchArray']>
     readonly watchAtMost: UnwrapRef<typeof import('@vueuse/core')['watchAtMost']>

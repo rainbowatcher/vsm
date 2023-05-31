@@ -1,26 +1,10 @@
 import { readDir, readTextFile } from "@tauri-apps/api/fs"
 import { configDir, resolve, sep } from "@tauri-apps/api/path"
-import { deepCompare } from "@composables/util"
 import json5 from "json5"
-import type { VsmSnippet, VsmSnippetView } from "../types/snippet"
+import type { GlobalStorage, VscProfile, VscSnippet, VsmSnippetView } from "@/types/snippet"
+import { deepCompare } from "@/hooks/util"
 
 const EXCLUDE = [".DS_Store"]
-
-export type GroupedSnippets = Record<string, VsmSnippet[]>
-export type VscSnippet = Record<string, VscSnippetInfo>
-export type Profile = { profile: string; path: string }
-export type VscSnippetInfo = {
-  prefix: string
-  body: string[]
-  desc: string
-  scope: string
-}
-export type GlobalStorage = {
-  userDataProfiles: Array<{
-    location: string
-    name: string
-  }>
-}
 
 export const scopeMap: Record<string, string> = {
   javascript: "javascript",
@@ -82,7 +66,7 @@ export const useVscodeStore = defineStore("vscode", () => {
     // TODO
   }
 
-  async function getProfiles(): Promise<Profile[]> {
+  async function getProfiles(): Promise<VscProfile[]> {
     const vscConfigDir = await getVSCConfigDir()
     const globalStorageConfig = await readGlobalStorageConfig()
 

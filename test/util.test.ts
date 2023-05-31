@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest"
-import { deepCompare, validateObjectProperties } from "../src/composables/util"
+import { deepCompare, validateObjectProperties } from "@/hooks/util"
 
 describe("deepCompare function", () => {
   it("Accurately compare two non-object", () => {

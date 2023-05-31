@@ -4,7 +4,7 @@ import App from "./App.vue"
 
 import "element-plus/dist/index.css"
 import "element-plus/theme-chalk/dark/css-vars.css"
-import "./styles.css"
+import "./styles/index.css"
 import "@unocss/reset/normalize.css"
 import "uno.css"
 

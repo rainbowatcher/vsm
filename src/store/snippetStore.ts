@@ -1,15 +1,14 @@
-import type { GroupedSnippets } from "@store/vscodeStore"
 import { defineStore } from "pinia"
 import Database from "tauri-plugin-sql-api"
-import type { VsmMeta, VsmSnippet, VsmSnippetView } from "../types/snippet"
+import type { GroupedSnippets, VsmSnippet, VsmSnippetView } from "@/types/snippet"
 
 const VSM_DB_SCHEMA = "sqlite:vsm-data.db"
-const emptySnippet = { name: "", lang: "" }
+const EMPTY_SNIPPET = { name: "", lang: "" }
 
 export const useSnippetStore = defineStore("snippet", () => {
   const snippets = ref<VsmSnippetView[]>([])
-  const current = ref<VsmSnippetView>(emptySnippet)
-  const snapshot = ref<VsmSnippetView>(emptySnippet)
+  const current = ref<VsmSnippetView>(EMPTY_SNIPPET)
+  const snapshot = ref<VsmSnippetView>(EMPTY_SNIPPET)
   const garbages = ref<VsmSnippetView[]>([])
   const groupedSnippets = computed(() => snippets.value.reduce<GroupedSnippets>((pre, next) => {
     if (!pre[next.lang]) {
@@ -85,7 +84,7 @@ export const useSnippetStore = defineStore("snippet", () => {
   }
 
   function select(name: string, lang: string) {
-    snapshot.value = snippets.value.find(i => i.name === name && i.lang === lang) || emptySnippet
+    snapshot.value = snippets.value.find(i => i.name === name && i.lang === lang) || EMPTY_SNIPPET
     current.value = { ...snapshot.value }
   }
 

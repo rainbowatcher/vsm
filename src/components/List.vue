@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { GroupedSnippets } from "@store/vscodeStore"
+import type { GroupedSnippets } from "@/store/vscodeStore"
 
 defineProps<{
   items: GroupedSnippets

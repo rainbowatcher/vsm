@@ -6,7 +6,7 @@ import {
   transformerDirectives,
   transformerVariantGroup,
 } from "unocss"
-import { useSideMenu } from "./src/composables/app"
+import { useSideMenu } from "./src/hooks/app"
 
 export default defineConfig({
   shortcuts: [

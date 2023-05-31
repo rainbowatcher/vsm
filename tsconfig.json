@@ -15,9 +15,7 @@
     "types": ["tauri-plugin-sql-api/dist-js/index.d.ts"],
     "skipLibCheck": true,
     "paths": {
-      "@components/*": ["./src/components/*"],
-      "@composables/*": ["./src/composables/*"],
-      "@store/*": ["./src/store/*"]
+      "@/*": ["./src/*"]
     }
   },
   "include": [

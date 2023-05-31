@@ -1,10 +1,10 @@
 import type { RouteRecordRaw } from "vue-router"
 import { createRouter, createWebHistory } from "vue-router"
 import type { App } from "vue"
-import Test from "@components/views/Test.vue"
-import Settings from "@components/views/Settings.vue"
-import Dashboard from "@components/views/Dashboard.vue"
-import Import from "@components/views/Import.vue"
+import Test from "@/views/Test.vue"
+import Settings from "@/views/Settings.vue"
+import Dashboard from "@/views/Dashboard.vue"
+import Import from "@/views/Import.vue"
 
 const routes: Readonly<RouteRecordRaw[]> = [
   { path: "/", component: Dashboard },

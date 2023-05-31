@@ -13,9 +13,7 @@ import { ElementPlusResolver } from "unplugin-vue-components/resolvers"
 export default defineConfig(() => ({
   resolve: {
     alias: {
-      "@components/": `${path.resolve(__dirname, "src/components")}/`,
-      "@composables/": `${path.resolve(__dirname, "src/composables")}/`,
-      "@store/": `${path.resolve(__dirname, "src/store")}/`,
+      "@": `${path.resolve(__dirname, "src")}`,
     },
   },
   plugins: [
@@ -28,7 +26,7 @@ export default defineConfig(() => ({
         "pinia",
       ],
       resolvers: [ElementPlusResolver()],
-      dirs: ["src/components/**", "src/composables/**", "src/store/**"],
+      dirs: ["src/components/**", "src/hooks/**", "src/store/**"],
       vueTemplate: true,
       dts: "src/auto-imports.d.ts",
     }),

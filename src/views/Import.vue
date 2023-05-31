@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { VsmSnippet } from "@store/snippetStore"
 import Split from "split.js"
+import { VsmSnippet } from "@/types/snippet"
 
 const { getSnippets } = useVscodeStore()
 const { snippets, conflictSnippets } = storeToRefs(useVscodeStore())
